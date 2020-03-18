@@ -7,6 +7,7 @@ def nyc_pigeon_organizer(data)
       value2.map do |name| # name is a STRING
         if !pigeon_list[name]
         pigeon_list[name] = {}
+        end
         binding.pry
       end
     end
