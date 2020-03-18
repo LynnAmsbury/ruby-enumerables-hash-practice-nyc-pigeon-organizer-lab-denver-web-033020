@@ -6,6 +6,6 @@ def nyc_pigeon_organizer(data)
     value.map do |key2, value2|
       binding.pry
     end
-    
+
   end
 end
