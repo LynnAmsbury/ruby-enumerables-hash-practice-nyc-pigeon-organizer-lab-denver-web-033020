@@ -1,19 +1,58 @@
-require 'pry'
+# pigeon_data = {
+#   :color => {
+#     :purple => ["Theo", "Peter Jr.", "Lucky"],
+#     :grey => ["Theo", "Peter Jr.", "Ms. K"],
+#     :white => ["Queenie", "Andrew", "Ms. K", "Alex"],
+#     :brown => ["Queenie", "Alex"]
+#   },
+#   :gender => {
+#     :male => ["Alex", "Theo", "Peter Jr.", "Andrew", "Lucky"],
+#     :female => ["Queenie", "Ms. K"]
+#   },
+#   :lives => {
+#     "Subway" => ["Theo", "Queenie"],
+#     "Central Park" => ["Alex", "Ms. K", "Lucky"],
+#     "Library" => ["Peter Jr."],
+#     "City Hall" => ["Andrew"]
+#   }
+# }
 
 def nyc_pigeon_organizer(data)
-  pigeon_list = {}
-  data.map do |key1, value1| # .map returns an ARRAY
-    value1.map do |key2, value2|
-      value2.map do |name| # name is a STRING
-        if !pigeon_list[name]
-        pigeon_list[name] = {}
+  pigeons = {}
+  data.each do |attribute_category, attribute_hash|
+    attribute_hash.each do |attribute, attribute_value|
+      attribute_value.each do |name|
+        if pigeons[name] == nil
+          pigeons[name] = {}
         end
-        if !pigeon_list[name][key1]
-          pigeon_list[name][key1] = []
+        if pigeons[name][attribute_category] == nil
+          pigeons[name][attribute_category] = []
         end
-        pigeon_list[name][key1] << key2.to_s
+        pigeons[name][attribute_category] << attribute.to_s
       end
     end
   end
-  return pigeon_list
+  pigeons
 end
+
+# def nyc_pigeon_organizer(data)
+#   new_hash = {}
+#   data.each do |key, value|
+#     value.each do |new_value, names|
+#       names.each do |name|
+        
+#         if !new_hash[name]
+#           new_hash[name] = {}
+#         end
+
+#         if !new_hash[name][key]
+#           new_hash[name][key] = []
+#         end
+
+#         new_hash[name][key] << new_value.to_s
+
+#       end
+#     end
+#   end
+#   new_hash
+# end
