@@ -18,19 +18,19 @@
 # }
 
 def nyc_pigeon_organizer(data)
-  pigeon_hash = {}
-  data.each do |attributes, attributes_hash|
-    attributes_hash.each do |attribute, names|
-      names.each do |name|
-        if !pigeon_hash[name]
-          pigeon_hash[name] = {}
+    pigeons = {}
+    data.each do |attribute_category, attribute_hash|
+      attribute_hash.each do |attribute, attribute_value|
+        attribute_value.each do |name|
+          if pigeons[name] == nil
+            pigeons[name] = {}
+          end
+          if pigeons[name][attribute_category] == nil
+            pigeons[name][attribute_category] = []
+          end
+          pigeons[name][attribute_category] << attribute.to_s
         end
-        if !pigeon_hash[name][attributes]
-          pigeon_hash[name][attributes] = []
-        end
-        pigeon_hash[name][attributes] << attribute.to_s
       end
     end
+    pigeons
   end
-  pigeon_hash
-end
